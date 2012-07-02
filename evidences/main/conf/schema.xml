@@ -1,23 +1,28 @@
 <?xml version="1.0" ?>
 <schema name="bvs" version="1.2">
   <types>
-    <fieldtype name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="boolean" class="solr.BoolField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="integer" class="solr.IntField" omitNorms="true"/>
-    <fieldtype name="long" class="solr.LongField" omitNorms="true"/>
-    <fieldtype name="float" class="solr.FloatField" omitNorms="true"/>
-    <fieldtype name="double" class="solr.DoubleField" omitNorms="true"/>
-    <fieldtype name="sint" class="solr.SortableIntField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="slong" class="solr.SortableLongField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="sfloat" class="solr.SortableFloatField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="sdouble" class="solr.SortableDoubleField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="date" class="solr.DateField" sortMissingLast="true" omitNorms="true"/>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true" omitNorms="true"/>
 
-    <fieldtype name="text_ws" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+
+    <fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+
+    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+    <!-- A Trie based date field for faster date range queries and date faceting. -->
+    <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+
+    <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
       </analyzer>
-    </fieldtype>
+    </fieldType>
 
     <fieldtype name="decs" class="solr.TextField" omitNorms="false">
         <analyzer type="index" class="org.bireme.dia.analysis.DeCSAnalyzer"/>
@@ -37,8 +42,8 @@
         </analyzer>
     </fieldtype>
 
-    <fieldtype name="decs_simple" class="solr.TextField">
-        <analyzer type="index" class="org.bireme.dia.analysis.DeCSSimpleAnalyzer"/>
+    <fieldtype name="decs_authorized_category" class="solr.TextField">
+        <analyzer type="index" class="org.bireme.dia.analysis.DeCSAuthorizedTermAndCategoryAnalyzer"/>
         <analyzer type="query">
             <tokenizer class="solr.KeywordTokenizerFactory"/>
             <filter class="solr.ISOLatin1AccentFilterFactory"/>
@@ -53,13 +58,13 @@
         </analyzer>
     </fieldtype>
 
-	<fieldtype name="dateiso" class="solr.TextField">
+	<fieldType name="dateiso" class="solr.TextField">
 		<analyzer type="index">
 			<tokenizer class="solr.PatternTokenizerFactory" pattern="(^[0-9]{4})" group="1"/>
 		</analyzer>
-	</fieldtype>
+	</fieldType>
 
-    <fieldtype name="text" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
 		<filter class="solr.ISOLatin1AccentFilterFactory"/>
@@ -72,25 +77,26 @@
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
-    </fieldtype>
+    </fieldType>
 
-    <fieldtype name="text_with_decs" class="solr.TextField">
+    <fieldType name="text_with_decs" class="solr.TextField">
         <analyzer type="index" class="org.bireme.dia.analysis.BVSStandardAnalyzer"/>
         <analyzer type="query">
             <tokenizer class="solr.StandardTokenizerFactory"/>
             <filter class="solr.ISOLatin1AccentFilterFactory"/>            
             <filter class="solr.LowerCaseFilterFactory"/>
         </analyzer>
-    </fieldtype>
+    </fieldType>
 
+    <!-- lowercases the entire field value, keeping it as a single token.  -->
+    <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+    </fieldType>
 
-	<fieldtype name="string_lower" class="solr.StrField">
-		<analyzer>
-			<tokenizer class="solr.LowerCaseTokenizerFactory"/>
-		</analyzer>
-	</fieldtype>
-
-	<fieldtype name="ignored" stored="false" indexed="false" class="solr.StrField" />
+	<fieldType name="ignored" stored="false" indexed="false" class="solr.StrField" />
  </types>
 
  <fields>
@@ -102,7 +108,7 @@
 	<field name="ti" type="text" indexed="true" stored="true" multiValued="true"/>
 	<field name="tl" type="string" indexed="true" stored="true" multiValued="true"/>
 	<field name="fo" type="text" indexefd="false" stored="true" multiValued="true"/>
-	<field name="la" type="string_lower" indexed="true" stored="true" multiValued="true"/>
+	<field name="la" type="lowercase" indexed="true" stored="true" multiValued="true"/>
 	<field name="ur" type="string" indexed="false" stored="true" multiValued="true"/>
 	<field name="ta" type="string" indexed="true" stored="true" multiValued="true"/>
 	<field name="da" type="string" indexed="true" stored="true" multiValued="false"/>
@@ -116,11 +122,11 @@
 	<field name="crg" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
 
    <!-- decs fields -->
-   <field name="mj" type="decs_simple" indexed="true" stored="false" multiValued="true"/>
+   <field name="mj" type="decs_authorized_category" indexed="true" stored="false" multiValued="true"/>
    <field name="mh" type="decs_keyword" indexed="true" stored="true" multiValued="true"/>
+   <field name="pt" type="decs_keyword" indexed="true" stored="true" multiValued="true"/>
    <field name="mh_words" type="decs" indexed="true" stored="false" multiValued="true"/>
    <field name="ct" type="decs" indexed="true" stored="true" multiValued="true"/>
-   <field name="pt" type="decs" indexed="true" stored="true" multiValued="true"/>
 
    <!-- guidelines -->
    <field name="objective" type="text" indexed="true" stored="true" multiValued="true" required="false"/>
@@ -133,7 +139,7 @@
 
    <!-- facet -->
    <field name="tag" type="string" indexed="true" stored="false" multiValued="true"/>
-   <field name="subject" type="decs_code" indexed="true" stored="false" multiValued="true" required="false"/>
+   <field name="mh_cluster" type="decs_code" indexed="true" stored="false" multiValued="true" required="false"/>
    <field name="year" type="dateiso" indexed="true" stored="false"/>
 
    <!-- catchall field, containing all other searchable text fields (implemented
@@ -174,7 +180,7 @@
 
  <copyField source="ct" dest="mh"/>
  <copyField source="mj" dest="mh"/>
- <copyField source="mj" dest="subject"/>
+ <copyField source="mj" dest="mh_cluster"/>
  <copyField source="da" dest="year"/>
  
  <copyField source="ab_*" dest="ab"/>

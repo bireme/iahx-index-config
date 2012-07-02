@@ -78,6 +78,7 @@
  <fields>
    <field name="id" type="string" indexed="true" stored="true"/>
    <field name="db" type="string" indexed="false" stored="true"/>
+   <field name="actkey" type="string" indexed="true" stored="true"/>
 
    <field name="sourceId" type="string" indexed="false" stored="true"/>
    <field name="issueVolume" type="string" indexed="false" stored="true"/>
@@ -93,7 +94,6 @@
    <field name="cityScope" type="string" indexed="false" stored="true"/>
    <field name="groupScope" type="string" indexed="false" stored="true"/>
    <field name="actValidity" type="string" indexed="false" stored="true"/>
-   <field name="relationshipAct" type="string" indexed="false" stored="true" multiValued="true"/>
    <field name="rectificationSourceId" type="string" indexed="false" stored="true"/>
    <field name="rectificationText" type="string" indexed="false" stored="true"/>
    <field name="textLanguage" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -110,7 +110,9 @@
    <field name="actDateisoDate" type="string" indexed="false" stored="true" />
    <field name="paginationstartPage" type="string" indexed="false" stored="true" />
    <field name="paginationendPage" type="string" indexed="false" stored="true" />
-   
+   <field name="TCLegisText" type="string" indexed="false" stored="true" />   
+
+   <field name="relationShip" type="string" indexed="false" stored="true" multiValued="true"/>
    
    <!-- cluster -->
    <field name="subject" type="string" indexed="true" stored="false" multiValued="true"/>

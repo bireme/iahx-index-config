@@ -106,7 +106,7 @@
    <field name="instituicao" type="string" indexed="false" stored="true" multiValued="false"/>
    <field name="instituicao_indice" type="text" indexed="true" stored="false" multiValued="true"/>
    <field name="instituicao_sort" type="string_lower" indexed="true" stored="false" multiValued="true"/>
-   <field name="empresa" type="string" indexed="false" stored="true" multiValued="true"/>
+   <field name="empresa" type="string" indexed="false" stored="true" multiValued="false"/>
    <field name="empresa_sort" type="string_lower" indexed="true" stored="false" multiValued="true"/>
    <field name="ta" type="text" indexed="true" stored="true" multiValued="false"/>
    <field name="vol" type="string" indexed="false" stored="true" multiValued="false"/>

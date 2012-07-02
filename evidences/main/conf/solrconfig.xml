@@ -256,7 +256,7 @@
     <lst name="invariants">
 	   <str name="facet">true</str>
 	   <str name="facet.field">tag</str>
-       <str name="facet.field">subject</str>
+       <str name="facet.field">mh_cluster</str>
        <str name="facet.field">year</str>
 	   <str name="facet.limit">20</str>
 	   <str name="facet.mincount">1</str>
@@ -272,7 +272,7 @@
 	  <lst name="invariants">
 		  <str name="facet">true</str>
 		  <str name="facet.field">tag</str>
-		  <str name="facet.field">subject</str>
+		  <str name="facet.field">mh_cluster</str>
 		  <str name="facet.field">year</str>
 		  <str name="facet.limit">20</str>
 		  <str name="facet.mincount">1</str>
