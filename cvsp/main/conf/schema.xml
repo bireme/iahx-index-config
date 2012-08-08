@@ -58,22 +58,22 @@
         </analyzer>
     </fieldType>
 
-	<fieldType name="dateiso" class="solr.TextField">
-		<analyzer type="index">
-			<tokenizer class="solr.PatternTokenizerFactory" pattern="(^[0-9]{4})" group="1"/>
-		</analyzer>
-	</fieldType>
+    <fieldType name="dateiso" class="solr.TextField">
+        <analyzer type="index">
+            <tokenizer class="solr.PatternTokenizerFactory" pattern="(^[0-9]{4})" group="1"/>
+        </analyzer>
+    </fieldType>
 
-	<fieldType name="text" class="solr.TextField" positionIncrementGap="100" omitNorms="false">
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100" omitNorms="false">
       <analyzer type="index">
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-		<filter class="solr.ISOLatin1AccentFilterFactory"/>
+        <filter class="solr.ISOLatin1AccentFilterFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-		<filter class="solr.ISOLatin1AccentFilterFactory"/>
+        <filter class="solr.ISOLatin1AccentFilterFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
@@ -93,13 +93,13 @@
     <fieldType name="textSpell" class="solr.TextField" positionIncrementGap="100" >
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-		<filter class="solr.ISOLatin1AccentFilterFactory"/>
+        <filter class="solr.ISOLatin1AccentFilterFactory"/>
         <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0"/>
         <filter class="solr.LowerCaseFilterFactory"/>
       </analyzer>
     </fieldType>
 
-	<fieldType name="ignored" stored="false" indexed="false" class="solr.StrField" />
+    <fieldType name="ignored" stored="false" indexed="false" class="solr.StrField" />
  </types>
 
 
@@ -141,14 +141,14 @@
    <field name="mh_cluster" type="decs_code" indexed="true" stored="false" multiValued="true" required="false"/>
    <field name="fulltext" type="string" indexed="true" stored="false" multiValued="false" required="false"/>
 
-	<!-- spellchecker -->
+    <!-- spellchecker -->
     <field name="spell" type="textSpell" indexed="true" stored="true" multiValued="true"/>
-	
+
    <!-- Dynamic field definitions -->
    <dynamicField name="ab_*"  type="text" indexed="true" stored="false"  multiValued="true"/>
    <dynamicField name="cn_*"  type="text" indexed="false" stored="true"  multiValued="true"/>
    <dynamicField name="ti_*"  type="text" indexed="true" stored="false"  multiValued="true"/>
-   
+
    <dynamicField name="*" type="ignored" multiValued="true"/>
 
    <!-- catchall field, containing all other searchable text fields (implemented
@@ -163,7 +163,7 @@
  <defaultSearchField>text</defaultSearchField>
 
  <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
- <solrQueryParser defaultOperator="OR"/>
+ <solrQueryParser defaultOperator="AND"/>
 
  <copyField source="id" dest="text"/>
  <copyField source="ti_*" dest="ti"/>
@@ -177,7 +177,7 @@
  <copyField source="mj" dest="mh"/>
  <copyField source="mj" dest="mh_cluster"/>
  <copyField source="da" dest="year_cluster"/>
- 
+
  <!-- permite a pesquisa por palavras do assunto -->
  <copyField source="mh" dest="mh_words"/>
  <copyField source="mj" dest="mh_words"/>
