@@ -132,9 +132,9 @@
 	 <lst name="invariants">
 		<str name="facet">true</str>
 		<str name="facet.field">type</str>
-        <str name="facet.field">tagsp</str>
-        <str name="f.tagsp.facet.sort">false</str>
-        <str name="f.tagsp.facet.limit">-1</str>
+        <str name="facet.field">tag_sp</str>
+        <str name="f.tag_sp.facet.sort">false</str>
+        <str name="f.tag_sp.facet.limit">-1</str>
         <str name="facet.field">tag_brasil</str>
         <str name="f.tag_brasil.facet.sort">false</str>
         <str name="f.tag_brasil.facet.limit">-1</str>
@@ -166,9 +166,9 @@
     <lst name="invariants">
         <str name="facet">true</str>
         <str name="facet.field">type</str>
-        <str name="facet.field">tagsp</str>
-        <str name="f.tagsp.facet.sort">false</str>
-        <str name="f.tagsp.facet.limit">-1</str>
+        <str name="facet.field">tag_sp</str>
+        <str name="f.tag_sp.facet.sort">false</str>
+        <str name="f.tag_sp.facet.limit">-1</str>
         <str name="facet.field">tag_brasil</str>
         <str name="f.tag_brasil.facet.sort">false</str>
         <str name="f.tag_brasil.facet.limit">-1</str>        

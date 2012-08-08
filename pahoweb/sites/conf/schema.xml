@@ -99,7 +99,8 @@
    <field name="description" type="text" indexed="true" stored="true"/>
    <field name="type" type="string" indexed="true" stored="true"/>
    <field name="link" type="string" indexed="false" stored="true"/>
-   <field name="source" type="string" indexed="false" stored="true"/>
+   <field name="source" type="string" indexed="true" stored="true"/>
+   <field name="date" type="string" indexed="true" stored="true"/>
    
    <field name="year_cluster" type="year_only" indexed="true" stored="false"/>
 
@@ -123,6 +124,6 @@
  <copyField source="title" dest="text"/>
  <copyField source="description" dest="text"/>
  <copyField source="source" dest="text"/>
-  <copyField source="date" dest="year_cluster"/>
+ <copyField source="date" dest="year_cluster"/>
 
 </schema>
