@@ -82,8 +82,8 @@
     <fieldType name="text_with_decs"           class="solr.TextField">
         <analyzer type="index"                 class="org.bireme.dia.analysis.BVSStandardAnalyzer"/>
         <analyzer type="query">
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter    class="solr.ISOLatin1AccentFilterFactory"/>            
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter    class="solr.ISOLatin1AccentFilterFactory"/>
             <filter    class="solr.LowerCaseFilterFactory"/>
         </analyzer>
     </fieldType>
@@ -105,7 +105,7 @@
             <filter    class="solr.LowerCaseFilterFactory"/>
         </analyzer>
     </fieldType>
-    
+
     <!-- spellchecker useful for names & titles -->
     <fieldType name="textSpellPhrase"          class="solr.TextField" positionIncrementGap="100" stored="false" multiValued="true">
         <analyzer>
@@ -161,7 +161,7 @@
    <field name="mh_words"  type="decs"                     indexed="true"  stored="false" multiValued="true"/>
    <field name="ct"        type="decs"                     indexed="true"  stored="true"  multiValued="true"/>
    <field name="pt"        type="decs"                     indexed="true"  stored="true"  multiValued="true"/>
- 
+
    <!-- sort -->
    <field name="order_sjr" type="tfloat" indexed="true"  stored="true"  multiValued="false"/>
    <field name="weight"    type="tfloat" indexed="true"  stored="true"  multiValued="false"/>
@@ -177,7 +177,7 @@
    <field name="clinical_aspect" type="string"    indexed="true"  stored="false" multiValued="true"  required="false"/>
    <field name="type_of_study"   type="string"    indexed="true"  stored="false" multiValued="true"  required="false"/>
    <field name="tag"             type="string"    indexed="true"  stored="false" multiValued="true"  required="false"/>
-   
+
    <!-- END cluster list -->
 
    <!-- Dynamic field definitions -->
@@ -219,7 +219,7 @@
  <copyField source="mj"         dest="mh"/>
  <!-- adiciona os limites no indice mh -->
  <copyField source="ct"         dest="mh"/>
- 
+
  <!-- permite a pesquisa por palavras do assunto -->
  <copyField source="mh"         dest="mh_words"/>
  <copyField source="mj"         dest="mh_words"/>
@@ -233,7 +233,7 @@
 
  <!-- indice de revista -->
  <copyField source="ta_var"     dest="ta"/>
- 
+
  <!-- copia sinomimos dos termos decs para tw -->
  <copyField source="decs_syn_*" dest="tw"/>
 
