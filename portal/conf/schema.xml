@@ -83,14 +83,14 @@
       <analyzer type="index">
         <tokenizer class="solr.WhitespaceTokenizerFactory" />
            <filter class="solr.ASCIIFoldingFilterFactory" />
-           <filter class="solr.WordDelimiterFilterFactory"         generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" preserveOriginal="1" />
            <filter class="solr.LowerCaseFilterFactory" />
+           <filter class="solr.WordDelimiterFilterFactory"         generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" preserveOriginal="1" />
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.WhitespaceTokenizerFactory" />
            <filter class="solr.ASCIIFoldingFilterFactory" />
-           <filter class="solr.WordDelimiterFilterFactory"         generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0" preserveOriginal="1" />
            <filter class="solr.LowerCaseFilterFactory" />
+           <filter class="solr.WordDelimiterFilterFactory"         generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" preserveOriginal="1" />
       </analyzer>
     </fieldType>
 
@@ -107,8 +107,8 @@
       <analyzer type="query">
         <tokenizer class="solr.WhitespaceTokenizerFactory" />
            <filter class="solr.ASCIIFoldingFilterFactory" />
-           <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="0" catenateNumbers="0" catenateAll="0" preserveOriginal="1" />
            <filter class="solr.LowerCaseFilterFactory" />
+           <filter class="solr.WordDelimiterFilterFactory" generateWordParts="1" generateNumberParts="1" catenateWords="1" catenateNumbers="1" catenateAll="0" preserveOriginal="1" />
       </analyzer>
     </fieldType>
 
