@@ -270,6 +270,7 @@
     <field name="pais_afiliacao"              type="string"                   indexed="true"   stored="true"   multiValued="true"   required="false" />
     <field name="instituicao_pais_afiliacao"  type="string"                   indexed="true"   stored="true"   multiValued="true"   required="false" />
     <field name="af"                          type="text"                     indexed="true"   stored="true"   multiValued="true" />
+    <field name="af_cluster"                  type="string"                   indexed="true"   stored="true"   multiValued="true" />
     <field name="jd"                          type="string"                   indexed="true"   stored="false"  multiValued="true"   required="false" />
     <field name="pais_assunto"                type="string"                   indexed="true"   stored="false"  multiValued="true"   required="false" />
     <!-- Exclusivos de GHL -->
@@ -334,6 +335,8 @@
     <field name="tag_controlecancer"        type="string"            indexed="true"   stored="false"  multiValued="true"   required="false" />
     <!-- saude ambiental -->
     <field name="tag_saudeambiental"        type="string"            indexed="true"   stored="false"  multiValued="true"   required="false" />
+   <!-- PERU - 10/2020 -->
+    <field name="collection_peru"           type="string"            indexed="true"   stored="false"  multiValued="true"   required="false" />
 
     <!-- ND - neglected_diseases -->
     <field name="tag_contexto"          type="string"            indexed="true"   stored="false"  multiValued="true"   required="false" />
@@ -399,6 +402,8 @@
     <!-- permite a pesquisa dos indices FIOCruz campo todo -->
     <copyField source="individuo"        dest="individuo_cluster" />
     <copyField source="descritor_local"  dest="descritor_local_cluster" />
+    <!-- copia os dados de afiliacao para campo de cluster -->
+    <copyField source="af"               dest="af_cluster" />
     <!-- copia os codigos decs para o campo de cluster  -->
     <copyField source="mj"               dest="mj_cluster" />
     <copyField source="pt"               dest="pt_cluster" />
